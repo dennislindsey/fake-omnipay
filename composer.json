@@ -1,0 +1,20 @@
+{
+    "name": "ebisbe/fake-omnipay",
+    "type": "symfony-bundle",
+    "description": "Fake omnipay gateway. It just passes all through",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Enric Bisbe",
+            "email": "enricu@gmail.com",
+            "homepage": "http://github.com/ebisbe"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "omnipay/common": "2.*"
+    },
+    "autoload": {
+        "psr-4": { "Omnipay\\Sermepa\\": "src/" }
+    }
+}
