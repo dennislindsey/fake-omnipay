@@ -7,8 +7,12 @@ use Omnipay\Common\Message\AbstractRequest;
 class PurchaseRequest extends AbstractRequest
 {
 
-    public function sendData()
+    public function sendData($data = [])
     {
         return $this->response = new PurchaseResponse($this, []);
+    }
+
+    public function getData()
+    {
     }
 }
