@@ -18,7 +18,7 @@ class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseI
 
     public function isRedirect()
     {
-        return false;
+        return (bool)($this->request->getData()['paymentSchema'] == 'PP');
     }
 
     public function getRedirectUrl()

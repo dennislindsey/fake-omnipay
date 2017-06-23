@@ -60,7 +60,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function setFrequency($value): AbstractRequest
     {
-        return $this->setParameter('paymentSchema', $value);
+        return $this->setParameter('frequency', $value);
     }
 
     /**
