@@ -34,4 +34,10 @@ class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseI
     {
         return [];
     }
+
+    public function getCardReference()
+    {
+        return md5(time());
+    }
+
 }
