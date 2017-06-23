@@ -12,7 +12,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "omnipay/common": "2.*"
+        "omnipay/common": "2.*",
+        "ramsey/uuid": "^3.5"
     },
     "autoload": {
         "psr-4": { "Omnipay\\Fake\\": "src/" }

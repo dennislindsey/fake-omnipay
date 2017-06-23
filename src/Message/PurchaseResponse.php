@@ -3,6 +3,7 @@
 namespace Omnipay\Fake\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Fake Purchase Response
@@ -35,9 +36,14 @@ class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseI
         return [];
     }
 
+    public function getTransactionReference()
+    {
+        return Uuid::uuid4()->toString();
+    }
+
     public function getCardReference()
     {
-        return md5(time());
+        return Uuid::uuid4()->toString();
     }
 
 }

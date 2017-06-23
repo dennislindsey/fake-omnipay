@@ -2,6 +2,8 @@
 
 namespace Omnipay\Fake\Message;
 
+use Ramsey\Uuid\Uuid;
+
 /**
  * Fake Purchase Response
  */
@@ -15,7 +17,7 @@ class CreateCustomerResponse extends FakeAbstractResponse
 
     public function getCustomerReference()
     {
-        return md5(time());
+        return Uuid::uuid4()->toString();
     }
 
 }
