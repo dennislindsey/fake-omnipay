@@ -2,13 +2,12 @@
 
 namespace Omnipay\Fake\Message;
 
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
  * Fake Purchase Response
  */
-class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
+class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseInterface
 {
 
     public function isSuccessful()
