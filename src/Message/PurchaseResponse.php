@@ -23,7 +23,7 @@ class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseI
 
     public function getRedirectUrl()
     {
-        return '';
+        return ($this->request->getData()['paymentSchema'] == 'PP' ? 'http://example.com/redirect-url' : '');
     }
 
     public function getRedirectMethod()
