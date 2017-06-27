@@ -3,6 +3,7 @@
 namespace Omnipay\Fake\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
+use Omnipay\Common\Message\RequestInterface;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -11,19 +12,34 @@ use Ramsey\Uuid\Uuid;
 class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseInterface
 {
 
+    /**
+     * The embodied request object.
+     *
+     * @var RequestInterface|PurchaseRequest
+     */
+    protected $request;
+
     public function isSuccessful()
     {
-        return true;
+        if (array_key_exists('cvv', $this->request->getResponseData()) && $this->request->getResponseData()['cvv'] != '000') {
+            return true;
+        } elseif (array_key_exists('payment_schema', $this->request->getResponseData()) && $this->request->getResponseData()['payment_schema'] == 'PP') {
+            return true;
+        }
+
+        return false;
     }
 
     public function isRedirect()
     {
-        return (bool)($this->request->getData()['paymentSchema'] == 'PP');
+        return (bool)(array_key_exists('payment_schema', $this->request->getResponseData()) && $this->request->getResponseData()['payment_schema'] == 'PP');
     }
 
     public function getRedirectUrl()
     {
-        return ($this->request->getData()['paymentSchema'] == 'PP' ? 'http://example.com/redirect-url' : '');
+        return (array_key_exists('payment_schema', $this->request->getResponseData()) && $this->request->getResponseData()['payment_schema'] == 'PP'
+            ? 'http://example.com/redirect-url'
+            : '');
     }
 
     public function getRedirectMethod()
