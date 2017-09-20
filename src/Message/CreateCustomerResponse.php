@@ -9,15 +9,19 @@ use Ramsey\Uuid\Uuid;
  */
 class CreateCustomerResponse extends FakeAbstractResponse
 {
-
-    public function isSuccessful()
+    /**
+     * @return bool
+     */
+    public function isSuccessful(): bool
     {
         return true;
     }
 
-    public function getCustomerReference()
+    /**
+     * @return string
+     */
+    public function getCustomerReference(): string
     {
         return Uuid::uuid4()->toString();
     }
-
 }

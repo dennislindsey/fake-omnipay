@@ -11,7 +11,6 @@ use Ramsey\Uuid\Uuid;
  */
 class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseInterface
 {
-
     /**
      * The embodied request object.
      *
@@ -19,7 +18,10 @@ class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseI
      */
     protected $request;
 
-    public function isSuccessful()
+    /**
+     * @return bool
+     */
+    public function isSuccessful(): bool
     {
         if (array_key_exists('cvv', $this->request->getResponseData()) && $this->request->getResponseData()['cvv'] != '000') {
             return true;
@@ -30,36 +32,53 @@ class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseI
         return false;
     }
 
-    public function isRedirect()
+    /**
+     * @return bool
+     */
+    public function isRedirect(): bool
     {
         return (bool)(array_key_exists('payment_schema', $this->request->getResponseData()) && $this->request->getResponseData()['payment_schema'] == 'PP');
     }
 
-    public function getRedirectUrl()
+    /**
+     * @return string
+     */
+    public function getRedirectUrl(): string
     {
         return (array_key_exists('payment_schema', $this->request->getResponseData()) && $this->request->getResponseData()['payment_schema'] == 'PP'
             ? 'http://example.com/redirect-url'
             : '');
     }
 
-    public function getRedirectMethod()
+    /**
+     * @return string
+     */
+    public function getRedirectMethod(): string
     {
         return '';
     }
 
-    public function getRedirectData()
+    /**
+     * @return array
+     */
+    public function getRedirectData(): array
     {
         return [];
     }
 
-    public function getTransactionReference()
+    /**
+     * @return string
+     */
+    public function getTransactionReference(): string
     {
         return Uuid::uuid4()->toString();
     }
 
-    public function getCardReference()
+    /**
+     * @return string
+     */
+    public function getCardReference(): string
     {
         return Uuid::uuid4()->toString();
     }
-
 }

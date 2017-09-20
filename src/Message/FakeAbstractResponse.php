@@ -16,10 +16,11 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 abstract class FakeAbstractResponse extends AbstractResponse
 {
-
-    public function getTransactionSequence()
+    /**
+     * @return int
+     */
+    public function getTransactionSequence(): int
     {
         return rand(1, 1000000);
     }
-
 }

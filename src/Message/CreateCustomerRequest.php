@@ -6,13 +6,20 @@ use Omnipay\Common\Message\AbstractRequest;
 
 class CreateCustomerRequest extends AbstractRequest
 {
-
-    public function sendData($data = [])
+    /**
+     * @param array $data
+     * @return CreateCustomerResponse
+     */
+    public function sendData($data = []): CreateCustomerResponse
     {
         return $this->response = new CreateCustomerResponse($this, []);
     }
 
-    public function getData()
+    /**
+     * @return array
+     */
+    public function getData(): array
     {
+        return [];
     }
 }
