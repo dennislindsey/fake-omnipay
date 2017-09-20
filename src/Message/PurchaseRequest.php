@@ -6,7 +6,6 @@ use Omnipay\Common\Message\AbstractRequest;
 
 class PurchaseRequest extends AbstractRequest
 {
-
     /**
      * Send the purchase request
      *
@@ -136,5 +135,4 @@ class PurchaseRequest extends AbstractRequest
     {
         return $this->setParameter('email', $value);
     }
-
 }

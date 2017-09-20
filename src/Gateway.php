@@ -5,10 +5,11 @@ namespace Omnipay\Fake;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Fake\Message\CreateCustomerRequest;
 use Omnipay\Fake\Message\PurchaseRequest;
+use Omnipay\Fake\Message\SubscriptionPlanRequest;
+use Omnipay\Fake\Message\SubscriptionRequest;
 
 class Gateway extends AbstractGateway
 {
-
     public function getDefaultParameters()
     {
         return [];
@@ -19,9 +20,19 @@ class Gateway extends AbstractGateway
         return 'fake';
     }
 
-    public function purchase(array $options = array())
+    public function purchase(array $options = [])
     {
         return $this->createRequest(PurchaseRequest::class, $options);
+    }
+
+    public function createSubscription(array $options = [])
+    {
+        return $this->createRequest(SubscriptionRequest::class, $options);
+    }
+
+    public function createPlan(array $options = [])
+    {
+        return $this->createRequest(SubscriptionPlanRequest::class, $options);
     }
 
     public function createCustomer(array $parameters = [])
@@ -69,5 +80,4 @@ class Gateway extends AbstractGateway
     public function refund(array $options = [])
     {
     }
-
 }
