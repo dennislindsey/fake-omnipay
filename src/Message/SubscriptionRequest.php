@@ -17,13 +17,112 @@ class SubscriptionRequest extends AbstractRequest
         return $this->response = new SubscriptionResponse($this, $this->getResponseData());
     }
 
+    /**
+     * @return array
+     */
     public function getResponseData(): array
     {
         return [];
     }
 
     /**
-     * Get the agreement name
+     * Get the startDate
+     *
+     * @return string
+     */
+    public function getStartDate(): string
+    {
+        return $this->getParameter('startDate');
+    }
+
+    /**
+     * Set the plan type
+     *
+     * @param string $value
+     * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
+     */
+    public function setStartDate($value): SubscriptionRequest
+    {
+        return $this->setParameter('startDate', $value);
+    }
+
+    /**
+     * Get the planReference
+     *
+     * @return string
+     */
+    public function getPlanReference(): string
+    {
+        return $this->getParameter('planReference');
+    }
+
+    /**
+     * Set the planReference
+     *
+     * @param string $value
+     * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
+     */
+    public function setPlanReference($value): SubscriptionRequest
+    {
+        return $this->setParameter('planReference', $value);
+    }
+
+    /**
+     * Get the subscription shipping address
+     *
+     * See the class documentation and the PayPal REST API documentation for
+     * a description of the array elements.
+     *
+     * @return array|null
+     */
+    public function getShippingAddress(): ?array
+    {
+        return $this->getParameter('shippingAddress');
+    }
+
+    /**
+     * Set the subscription shipping address
+     *
+     * See the class documentation and the PayPal REST API documentation for
+     * a description of the array elements.
+     *
+     * @param  $value
+     * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
+     */
+    public function setShippingAddress(array $value): SubscriptionRequest
+    {
+        return $this->setParameter('shippingAddress', $value);
+    }
+
+    /**
+     * Get the subscription charge models
+     *
+     * See the class documentation and the PayPal REST API documentation for
+     * a description of the array elements.
+     *
+     * @return array|null
+     */
+    public function getChargeModels(): ?array
+    {
+        return $this->getParameter('chargeModels');
+    }
+
+    /**
+     * Set the  subscription charge models
+     *
+     * See the class documentation and the PayPal REST API documentation for
+     * a description of the array elements.
+     *
+     * @param  $value
+     * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
+     */
+    public function setChargeModels(array $value): SubscriptionRequest
+    {
+        return $this->setParameter('chargeModels', $value);
+    }
+
+    /**
+     * Get the name
      *
      * @return string
      */
@@ -33,7 +132,7 @@ class SubscriptionRequest extends AbstractRequest
     }
 
     /**
-     * Set the agreement name
+     * Set the  name
      *
      * @param string $value
      * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
@@ -44,161 +143,89 @@ class SubscriptionRequest extends AbstractRequest
     }
 
     /**
-     * Get the plan ID
+     * Get the request customer reference -- used in many requests
      *
      * @return string
      */
-    public function getPlanId(): string
+    public function getCustomerReference(): string
     {
-        return $this->getParameter('planId');
+        return $this->getParameter('customerReference');
     }
 
     /**
-     * Set the plan ID
+     * Set the request customer reference -- used in many requests
      *
      * @param string $value
      * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
      */
-    public function setPlanId($value): SubscriptionRequest
+    public function setCustomerReference($value): SubscriptionRequest
     {
-        return $this->setParameter('planId', $value);
+        return $this->setParameter('customerReference', $value);
     }
 
     /**
-     * Get the agreement start date
+     * Get the request accountId -- used in every request
      *
-     * @return \DateTime
+     * @return string|null
      */
-    public function getStartDate(): \DateTime
+    public function getAccountId(): ?string
     {
-        return $this->getParameter('startDate');
+        return $this->getParameter('accountId');
     }
 
     /**
-     * Set the agreement start date
+     * Set the request accountId -- used in every request
      *
-     * @param \DateTime|string $value
+     * @param string $value
      * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
      */
-    public function setStartDate($value): SubscriptionRequest
+    public function setAccountId($value): SubscriptionRequest
     {
-        if (!($value instanceof \DateTime)) {
-            $value = new \DateTime($value);
-        }
-
-        return $this->setParameter('startDate', $value);
+        return $this->setParameter('accountId', $value);
     }
 
     /**
-     * Get the agreement details
+     * Get the request email -- used in many requests
      *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
-     *
-     * @return array
-     * @link https://developer.paypal.com/docs/api/#agreementdetails-object
+     * @return string|null
      */
-    public function getAgreementDetails(): array
+    public function getEmail(): ?string
     {
-        return $this->getParameter('agreementDetails');
+        return $this->getParameter('email');
     }
 
     /**
-     * Set the agreement details
+     * Set the request email -- used in many requests
      *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
-     *
-     * @param array $value
+     * @param string $value
      * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
-     * @link https://developer.paypal.com/docs/api/#agreementdetails-object
      */
-    public function setAgreementDetails(array $value): SubscriptionRequest
+    public function setEmail($value): SubscriptionRequest
     {
-        return $this->setParameter('agreementDetails', $value);
+        return $this->setParameter('email', $value);
     }
 
     /**
-     * Get the payer details
+     * Get the plan or subscription merchant preferences
      *
      * See the class documentation and the PayPal REST API documentation for
      * a description of the array elements.
      *
-     * @return array
-     * @link https://developer.paypal.com/docs/api/#payer-object
+     * @return array|null
      */
-    public function getPayerDetails(): array
-    {
-        return $this->getParameter('payerDetails');
-    }
-
-    /**
-     * Set the payer details
-     *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
-     *
-     * @param array $value
-     * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
-     * @link https://developer.paypal.com/docs/api/#payer-object
-     */
-    public function setPayerDetails(array $value): SubscriptionRequest
-    {
-        return $this->setParameter('payerDetails', $value);
-    }
-
-    /**
-     * Get the shipping address
-     *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
-     *
-     * @return array
-     * @link https://developer.paypal.com/docs/api/#address-object
-     */
-    public function getShippingAddress(): array
-    {
-        return $this->getParameter('shippingAddress');
-    }
-
-    /**
-     * Set the shipping address
-     *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
-     *
-     * @param array $value
-     * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
-     * @link https://developer.paypal.com/docs/api/#address-object
-     */
-    public function setShippingAddress(array $value): SubscriptionRequest
-    {
-        return $this->setParameter('shippingAddress', $value);
-    }
-
-    /**
-     * Get preferences to override the plan merchant preferences
-     *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
-     *
-     * @return array
-     * @link https://developer.paypal.com/docs/api/#merchantpreferences-object
-     */
-    public function getMerchantPreferences(): array
+    public function getMerchantPreferences(): ?array
     {
         return $this->getParameter('merchantPreferences');
     }
 
     /**
-     * Set preferences to override the plan merchant preferences
+     * Set the plan or subscription merchant preferences
      *
      * See the class documentation and the PayPal REST API documentation for
      * a description of the array elements.
      *
-     * @param array $value
+     * @param  $value
      * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
-     * @link https://developer.paypal.com/docs/api/#merchantpreferences-object
      */
     public function setMerchantPreferences(array $value): SubscriptionRequest
     {
@@ -206,54 +233,31 @@ class SubscriptionRequest extends AbstractRequest
     }
 
     /**
-     * Get charge model to override the plan charge model
+     * getData
      *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
+     * fetch all data needed for submission
      *
      * @return array
-     * @link https://developer.paypal.com/docs/api/#overridechargemodel-object
-     */
-    public function getChargeModel(): array
-    {
-        return $this->getParameter('chargeModel');
-    }
-
-    /**
-     * Set preferences to override the plan merchant preferences
-     *
-     * See the class documentation and the PayPal REST API documentation for
-     * a description of the array elements.
-     *
-     * @param array $value
-     * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
-     * @link https://developer.paypal.com/docs/api/#merchantpreferences-object
-     */
-    public function setChargeModel(array $value): SubscriptionRequest
-    {
-        return $this->setParameter('chargeModel', $value);
-    }
-
-    /**
-     * @return array
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getData(): array
     {
-        $this->validate('name', 'description', 'startDate', 'payerDetails', 'planId');
-        $data = [
-            'name'                          => $this->getName(),
-            'description'                   => $this->getDescription(),
-            'start_date'                    => $this->getStartDate()->format('c'),
-            'agreement_details'             => $this->getAgreementDetails(),
-            'payer'                         => $this->getPayerDetails(),
-            'plan'                          => [
-                'id' => $this->getPlanId(),
-            ],
-            'shipping_address'              => $this->getShippingAddress(),
-            'override_merchant_preferences' => $this->getMerchantPreferences(),
-            'override_charge_models'        => $this->getChargeModel(),
+        return [
+            'name'                 => $this->getName(),
+            'description'          => $this->getDescription(),
+            'start_date'           => $this->getStartDate(),
+            'plan_reference'       => $this->getPlanReference(),
+            'customer_token'       => $this->getCustomerReference(),
+            'account_id'           => $this->getAccountId(),
+            'email'                => $this->getEmail(),
+            'billing_email'        => $this->getEmail(),
+            'account_email'        => $this->getEmail(),
+            'merchant_preferences' => $this->getMerchantPreferences(),
+            'shipping_address'     => $this->getShippingAddress(),
+            'charge_models'        => $this->getChargeModels(),
+            'return_url'           => $this->getReturnUrl(),
+            'cancel_url'           => $this->getCancelUrl(),
+            'pingback_url'         => $this->getNotifyUrl(),
         ];
-
-        return $data;
     }
 }
