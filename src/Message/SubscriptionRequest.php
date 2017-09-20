@@ -77,11 +77,15 @@ class SubscriptionRequest extends AbstractRequest
     /**
      * Set the agreement start date
      *
-     * @param \DateTime $value
+     * @param \DateTime|string $value
      * @return SubscriptionRequest|AbstractRequest provides a fluent interface.
      */
-    public function setStartDate(\DateTime $value): SubscriptionRequest
+    public function setStartDate($value): SubscriptionRequest
     {
+        if (!($value instanceof \DateTime)) {
+            $value = new \DateTime($value);
+        }
+
         return $this->setParameter('startDate', $value);
     }
 
