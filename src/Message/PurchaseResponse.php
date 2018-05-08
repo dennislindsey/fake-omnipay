@@ -19,6 +19,21 @@ class PurchaseResponse extends FakeAbstractResponse implements RedirectResponseI
     protected $request;
 
     /**
+     * Constructor
+     *
+     * @param RequestInterface $request the initiating request.
+     * @param mixed $data
+     */
+    public function __construct(RequestInterface $request, $data)
+    {
+        parent::__construct($request, $data);
+
+        if ($data['amount_usd'] == 66.71) {
+            throw new InvalidResponseException;
+        }
+    }
+
+    /**
      * @return bool
      */
     public function isSuccessful(): bool
