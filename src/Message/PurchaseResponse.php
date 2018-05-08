@@ -2,6 +2,7 @@
 
 namespace Omnipay\Fake\Message;
 
+use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 use Ramsey\Uuid\Uuid;
